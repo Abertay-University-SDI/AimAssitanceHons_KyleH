@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
+#include "Kismet/KismetMaterialLibrary.h"
+#include "Target.h"
 #include "AimAssistHonsCharacter.generated.h"
 
 class UInputComponent;
@@ -29,14 +31,8 @@ class AAimAssistHonsCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* FirstPersonCameraComponent;
 
-	/** Jump Input Action */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
-	UInputAction* JumpAction;
+	bool targetHit = false;
 
-	/** Move Input Action */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
-	UInputAction* MoveAction;
-	
 public:
 	AAimAssistHonsCharacter();
 
@@ -49,12 +45,16 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* LookAction;
 
-protected:
-	/** Called for movement input */
-	void Move(const FInputActionValue& Value);
+	/** Look Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* ShootAction;
 
+protected:
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
+
+	/** Called for looking input */
+	void Shoot(const FInputActionValue& Value);
 
 protected:
 	// APawn interface

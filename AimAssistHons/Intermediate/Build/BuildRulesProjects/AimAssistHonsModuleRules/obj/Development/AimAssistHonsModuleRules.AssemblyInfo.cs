@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AimAssistHonsModuleRules")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Development")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+caa84ace76aa1e14a520eea4c03b59a0d1ae1840")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b43d5728536906b99eb9e55b444f80248ac19382")]
 [assembly: System.Reflection.AssemblyProductAttribute("AimAssistHonsModuleRules")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AimAssistHonsModuleRules")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

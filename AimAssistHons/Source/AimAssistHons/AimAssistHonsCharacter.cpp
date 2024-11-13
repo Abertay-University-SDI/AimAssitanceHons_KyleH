@@ -10,6 +10,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 #include "Engine/LocalPlayer.h"
+#include <Kismet/KismetSystemLibrary.h>
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -51,33 +52,15 @@ void AAimAssistHonsCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 	// Set up action bindings
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent))
 	{
-		// Jumping
-		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &ACharacter::Jump);
-		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &ACharacter::StopJumping);
-
-		// Moving
-		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAimAssistHonsCharacter::Move);
-
 		// Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AAimAssistHonsCharacter::Look);
+
+		//shoot
+		EnhancedInputComponent->BindAction(ShootAction, ETriggerEvent::Triggered, this, &AAimAssistHonsCharacter::Look);
 	}
 	else
 	{
 		UE_LOG(LogTemplateCharacter, Error, TEXT("'%s' Failed to find an Enhanced Input Component! This template is built to use the Enhanced Input system. If you intend to use the legacy system, then you will need to update this C++ file."), *GetNameSafe(this));
-	}
-}
-
-
-void AAimAssistHonsCharacter::Move(const FInputActionValue& Value)
-{
-	// input is a Vector2D
-	FVector2D MovementVector = Value.Get<FVector2D>();
-
-	if (Controller != nullptr)
-	{
-		// add movement 
-		AddMovementInput(GetActorForwardVector(), MovementVector.Y);
-		AddMovementInput(GetActorRightVector(), MovementVector.X);
 	}
 }
 
@@ -91,5 +74,40 @@ void AAimAssistHonsCharacter::Look(const FInputActionValue& Value)
 		// add yaw and pitch input to controller
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
+	}
+}
+
+void AAimAssistHonsCharacter::Shoot(const FInputActionValue& Value)
+{
+	// Define the start and end points of the trace
+	FVector Start = GetActorLocation();
+	FVector ForwardVector = GetActorForwardVector();
+	FVector End = Start + (ForwardVector * 1000.0f); // Trace 1000 units forward
+
+	// Collision query parameters
+	FCollisionQueryParams TraceParams;
+	TraceParams.AddIgnoredActor(this); // Ignore self in trace
+	
+
+	// Result of the hit
+	FHitResult HitResult;
+
+	// Perform the line trace
+	bool bHit = GetWorld()->LineTraceSingleByChannel(
+		HitResult,     
+		Start,         
+		End,           
+		ECC_Camera,
+		TraceParams    
+	);
+
+	
+
+	if (bHit)
+	{
+		if (ATarget* hitTarget = Cast<ATarget>(HitResult.GetActor()))
+		{
+			hitTarget->moveTarget(targetHit);
+		}
 	}
 }

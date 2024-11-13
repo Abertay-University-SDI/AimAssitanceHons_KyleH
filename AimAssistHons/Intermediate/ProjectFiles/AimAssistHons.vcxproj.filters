@@ -11,6 +11,7 @@
     <None Include="..\..\Source\AimAssistHonsEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.vsconfig" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
@@ -63,6 +64,18 @@
       <Filter>Source\AimAssistHons</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\AimAssistHons\AimAssistHonsProjectile.h">
+      <Filter>Source\AimAssistHons</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\AimAssistHons\Target.cpp">
+      <Filter>Source\AimAssistHons</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\AimAssistHons\Target.h">
+      <Filter>Source\AimAssistHons</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\AimAssistHons\TargetPlayerInterace.cpp">
+      <Filter>Source\AimAssistHons</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\AimAssistHons\TargetPlayerInterace.h">
       <Filter>Source\AimAssistHons</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\AimAssistHons\TP_PickUpComponent.cpp">
