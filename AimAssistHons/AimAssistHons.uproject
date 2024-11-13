@@ -1,0 +1,22 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{89DC61BE-4B47-0B56-ED6F-1198477104A7}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "AimAssistHons",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ModelingToolsEditorMode",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		}
+	]
+}

@@ -1,0 +1,19 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\2101598\\onedrive - abertay university\\documents\\github\\aimassitancehons_kyleh\\aimassisthons\\intermediate\\build\\win64\\unrealeditor\\inc\\aimassisthons\\uht\\aimassisthonsgamemode.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\2101598\\onedrive - abertay university\\documents\\github\\aimassitancehons_kyleh\\aimassisthons\\intermediate\\build\\win64\\x64\\aimassisthonseditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\2101598\\onedrive - abertay university\\documents\\github\\aimassitancehons_kyleh\\aimassisthons\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\aimassisthons\\definitions.aimassisthons.h",
+            "c:\\users\\2101598\\onedrive - abertay university\\documents\\github\\aimassitancehons_kyleh\\aimassisthons\\source\\aimassisthons\\aimassisthonsgamemode.h",
+            "c:\\program files\\epic games\\5.4.3\\windows\\engine\\source\\runtime\\engine\\classes\\gameframework\\gamemodebase.h",
+            "c:\\program files\\epic games\\5.4.3\\windows\\engine\\source\\runtime\\engine\\classes\\engine\\serverstatreplicator.h",
+            "c:\\program files\\epic games\\5.4.3\\windows\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\serverstatreplicator.generated.h",
+            "c:\\program files\\epic games\\5.4.3\\windows\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\gamemodebase.generated.h",
+            "c:\\users\\2101598\\onedrive - abertay university\\documents\\github\\aimassitancehons_kyleh\\aimassisthons\\intermediate\\build\\win64\\unrealeditor\\inc\\aimassisthons\\uht\\aimassisthonsgamemode.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

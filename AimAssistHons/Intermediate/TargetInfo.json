@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "AimAssistHons",
+			"Path": "..\\Source\\AimAssistHons.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "AimAssistHonsEditor",
+			"Path": "..\\Source\\AimAssistHonsEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
