@@ -13,6 +13,7 @@ void EmptyLinkFunctionForGeneratedCodeTarget() {}
 AIMASSISTHONS_API UClass* Z_Construct_UClass_ATarget();
 AIMASSISTHONS_API UClass* Z_Construct_UClass_ATarget_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_AActor();
+ENGINE_API UClass* Z_Construct_UClass_USphereComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 UPackage* Z_Construct_UPackage__Script_AimAssistHons();
 // End Cross Module References
@@ -38,8 +39,14 @@ struct Z_Construct_UClass_ATarget_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Target.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_collider_MetaData[] = {
+		{ "Category", "Target" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Target.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_target;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_collider;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -48,8 +55,10 @@ struct Z_Construct_UClass_ATarget_Statics
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATarget_Statics::NewProp_target = { "target", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ATarget, target), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_target_MetaData), NewProp_target_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ATarget_Statics::NewProp_collider = { "collider", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ATarget, collider), Z_Construct_UClass_USphereComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_collider_MetaData), NewProp_collider_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ATarget_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATarget_Statics::NewProp_target,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ATarget_Statics::NewProp_collider,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_ATarget_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_ATarget_Statics::DependentSingletons[])() = {
@@ -92,10 +101,10 @@ ATarget::~ATarget() {}
 struct Z_CompiledInDeferFile_FID_Users_2101598_OneDrive___Abertay_University_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_Target_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ATarget, ATarget::StaticClass, TEXT("ATarget"), &Z_Registration_Info_UClass_ATarget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ATarget), 2353397913U) },
+		{ Z_Construct_UClass_ATarget, ATarget::StaticClass, TEXT("ATarget"), &Z_Registration_Info_UClass_ATarget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ATarget), 2165961335U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_2101598_OneDrive___Abertay_University_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_Target_h_3930914170(TEXT("/Script/AimAssistHons"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_2101598_OneDrive___Abertay_University_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_Target_h_1388110973(TEXT("/Script/AimAssistHons"),
 	Z_CompiledInDeferFile_FID_Users_2101598_OneDrive___Abertay_University_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_Target_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_2101598_OneDrive___Abertay_University_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_Target_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

@@ -31,7 +31,11 @@ class AAimAssistHonsCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* FirstPersonCameraComponent;
 
+	
+
 	bool targetHit = false;
+	bool isRotating = true;
+	float angle = 0.0f;
 
 public:
 	AAimAssistHonsCharacter();
@@ -41,6 +45,8 @@ protected:
 
 public:
 		
+	virtual void Tick(float DeltaTime);
+
 	/** Look Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* LookAction;
@@ -48,6 +54,9 @@ public:
 	/** Look Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* ShootAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	ATarget* target;
 
 protected:
 	/** Called for looking input */

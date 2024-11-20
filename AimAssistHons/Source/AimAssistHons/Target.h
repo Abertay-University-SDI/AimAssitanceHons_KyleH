@@ -5,7 +5,9 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Kismet/KismetMaterialLibrary.h"
+#include <Components/SphereComponent.h>
 #include "Target.generated.h"
+
 
 UCLASS()
 class AIMASSISTHONS_API ATarget : public AActor
@@ -18,6 +20,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* target;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USphereComponent* collider;
 
 protected:
 	// Called when the game starts or when spawned

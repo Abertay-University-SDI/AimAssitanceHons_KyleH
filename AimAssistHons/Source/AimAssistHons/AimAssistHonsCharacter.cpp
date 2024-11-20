@@ -11,6 +11,7 @@
 #include "InputActionValue.h"
 #include "Engine/LocalPlayer.h"
 #include <Kismet/KismetSystemLibrary.h>
+#include <Kismet/KismetMathLibrary.h>
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -45,7 +46,49 @@ void AAimAssistHonsCharacter::BeginPlay()
 	Super::BeginPlay();
 }
 
-//////////////////////////////////////////////////////////////////////////// Input
+void AAimAssistHonsCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	FVector playerForwardVectNorm = GetActorForwardVector();
+
+	FVector TargetVectorNorm = target->GetActorLocation() - GetOwner()->GetActorLocation();//get vector from player to target
+	TargetVectorNorm.Normalize();
+
+	//get angle between player->Target and player forward vector
+	angle = (180.0) / UE_DOUBLE_PI * FMath::Acos(FVector::DotProduct(playerForwardVectNorm.GetSafeNormal(0.0001), TargetVectorNorm));
+
+	//TO DO: TARGET GRAVITY NOT WORKING, CLOSEST I GOT WAS ADDCONTROLLERYAWINPUT BUT EVEN THAT WAS GLITCHY. TRY SOMETHING!!!
+	
+	//if (angle >= 0.99)
+	//{
+	//	isRotating = false;
+	//}
+	//else
+	//{
+
+	//	FRotator targetRotation = TargetVectorNorm.Rotation();
+
+	//	FRotator NewRotation = FMath::RInterpTo(GetActorRotation(), targetRotation, DeltaTime, 5);
+	//	SetActorRotation(NewRotation);
+
+	//	//float TargetGravityInput = FMath::Atan2(TargetVectorNorm.Y, TargetVectorNorm.X);
+
+	//	////radians to degrees
+	//	//float RtoD = FMath::RadiansToDegrees(TargetGravityInput);
+	//	//AddControllerYawInput(RtoD * 1 * DeltaTime);
+	//}
+
+
+	
+	//SetActorRotation(FMath::RInterpTo(GetActorRotation(), FRotator(angle), DeltaTime, 10));
+
+
+
+	//debug lines
+	FString FloatMessage = FString::Printf(TEXT("The value of MyFloat is: %f"), angle);
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FloatMessage);
+}
 
 void AAimAssistHonsCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {	
@@ -56,7 +99,7 @@ void AAimAssistHonsCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AAimAssistHonsCharacter::Look);
 
 		//shoot
-		EnhancedInputComponent->BindAction(ShootAction, ETriggerEvent::Triggered, this, &AAimAssistHonsCharacter::Look);
+		EnhancedInputComponent->BindAction(ShootAction, ETriggerEvent::Triggered, this, &AAimAssistHonsCharacter::Shoot);
 	}
 	else
 	{
@@ -79,34 +122,37 @@ void AAimAssistHonsCharacter::Look(const FInputActionValue& Value)
 
 void AAimAssistHonsCharacter::Shoot(const FInputActionValue& Value)
 {
-	// Define the start and end points of the trace
-	FVector Start = GetActorLocation();
-	FVector ForwardVector = GetActorForwardVector();
-	FVector End = Start + (ForwardVector * 1000.0f); // Trace 1000 units forward
+	//get player controller
+	APlayerController* PlayerController = Cast<APlayerController>(GetController());
 
-	// Collision query parameters
-	FCollisionQueryParams TraceParams;
-	TraceParams.AddIgnoredActor(this); // Ignore self in trace
-	
+	const FRotator SpawnRotation = PlayerController->PlayerCameraManager->GetCameraRotation();
 
-	// Result of the hit
+	const FVector SpawnLocation = GetOwner()->GetActorLocation();
+
+	FCollisionQueryParams TraceParams(FName(TEXT("TraceTag")), true, nullptr);//used to specify parameters for collision 
 	FHitResult HitResult;
 
-	// Perform the line trace
-	bool bHit = GetWorld()->LineTraceSingleByChannel(
-		HitResult,     
-		Start,         
-		End,           
-		ECC_Camera,
-		TraceParams    
-	);
+	bool hit;
 
-	
+	//bullet magnetism. If players forward vector is within 10 degrees of the target the let them shoot it.
 
-	if (bHit)
+	//TO DO: GLITCH WHERE ANGLE OS NOT ACCURATE AFTER SHOOTING
+	if (angle > 10)
+	{
+		//traces a line from the player to the first point of collision 
+		hit = GetWorld()->LineTraceSingleByChannel(HitResult, SpawnLocation, UKismetMathLibrary::GetForwardVector(SpawnRotation) * 50000, ECC_Visibility, TraceParams);
+	}
+	else
+	{
+		hit = GetWorld()->LineTraceSingleByChannel(HitResult, SpawnLocation, target->GetActorLocation(), ECC_Visibility, TraceParams);
+	}
+
+	if (hit)
 	{
 		if (ATarget* hitTarget = Cast<ATarget>(HitResult.GetActor()))
 		{
+			UE_LOG(LogTemplateCharacter, Error, TEXT("sausages!"), *GetNameSafe(this));
+			targetHit = true;
 			hitTarget->moveTarget(targetHit);
 		}
 	}

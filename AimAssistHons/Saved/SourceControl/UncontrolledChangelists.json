@@ -7,6 +7,17 @@
 			"files": [
 				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/StarterContent/Architecture/Floor_400x400.uasset",
 				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/AimingArea.uasset",
+				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/0/XV/VTAF5COFGLO9YT51MQCVTR.uasset",
+				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/7/I8/LH9T10MU22N3EEPTZ4GAFC.uasset",
+				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/8/SZ/D1AHM62WL9TXSNPYQDXQMZ.uasset",
+				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/A/KU/12YG9I1QW2GU72MG8QQX1K.uasset",
+				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/B/K6/ECMJ3Z4AJHOTCFD0C4ITGX.uasset",
+				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/0/YY/FOCJPYM2QSPDPFF9BEBDYF.uasset",
+				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/6/M8/KHZJA1TY2HKMEXTCFZPW0F.uasset",
+				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/A/O2/37VPO8ZZZD1JICZRJPNXY9.uasset",
+				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/BP_Target.uasset",
+				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/FirstPerson/Blueprints/BP_FirstPersonCharacter.uasset",
+				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/FirstPerson/Input/IMC_Default.uasset",
 				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/F/2F/0SPQG8P507LI9VUAFG20OA.uasset",
 				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/E/UE/YUZ9741T50O1SYRX90OB0S.uasset",
 				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/C/P8/0GJ9TLQE2YKOIFZ6YHG33H.uasset",
@@ -48,15 +59,9 @@
 				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/0/NB/NWWEVRQSGT6ARVZ8HQLCM9.uasset",
 				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/0/7P/QZX5AESKLO855EVPT5JU20.uasset",
 				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/0/0M/LYKU8MRWM4BO3O1FDZBG2U.uasset",
-				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/0/XV/VTAF5COFGLO9YT51MQCVTR.uasset",
-				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/7/I8/LH9T10MU22N3EEPTZ4GAFC.uasset",
-				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/8/SZ/D1AHM62WL9TXSNPYQDXQMZ.uasset",
-				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/A/KU/12YG9I1QW2GU72MG8QQX1K.uasset",
-				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/B/K6/ECMJ3Z4AJHOTCFD0C4ITGX.uasset",
-				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/0/YY/FOCJPYM2QSPDPFF9BEBDYF.uasset",
-				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/6/M8/KHZJA1TY2HKMEXTCFZPW0F.uasset",
-				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/A/O2/37VPO8ZZZD1JICZRJPNXY9.uasset",
-				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/BP_Target.uasset"
+				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/1/OD/YPSPM063O6XAJVKSDHY2JX.uasset",
+				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/4/E5/6XON0XLIRNWJCBCE62P2VV.uasset",
+				"C:/Users/2101598/OneDrive - Abertay University/Documents/GitHub/AimAssitanceHons_KyleH/AimAssistHons/Content/__ExternalActors__/FirstPerson/Maps/FirstPersonMap/B/YQ/KT6JL4FVCNJJ9VFOCSF32J.uasset"
 			]
 		}
 	]
