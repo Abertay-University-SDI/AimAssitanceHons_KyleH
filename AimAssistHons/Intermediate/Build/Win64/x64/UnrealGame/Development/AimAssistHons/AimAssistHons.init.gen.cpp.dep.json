@@ -1,0 +1,13 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\hamil\\onedrive\\documents\\github\\aimassitancehons_kyleh\\aimassisthons\\intermediate\\build\\win64\\unrealgame\\inc\\aimassisthons\\uht\\aimassisthons.init.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\hamil\\onedrive\\documents\\github\\aimassitancehons_kyleh\\aimassisthons\\intermediate\\build\\win64\\x64\\aimassisthons\\development\\engine\\sharedpch.engine.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\hamil\\onedrive\\documents\\github\\aimassitancehons_kyleh\\aimassisthons\\intermediate\\build\\win64\\x64\\unrealgame\\development\\aimassisthons\\definitions.aimassisthons.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

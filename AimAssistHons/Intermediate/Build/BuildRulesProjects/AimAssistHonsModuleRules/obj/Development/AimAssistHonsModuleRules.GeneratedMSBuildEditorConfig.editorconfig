@@ -8,6 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AimAssistHonsModuleRules
-build_property.ProjectDir = C:\Users\2101598\OneDrive - Abertay University\Documents\GitHub\AimAssitanceHons_KyleH\AimAssistHons\Intermediate\Build\BuildRulesProjects\AimAssistHonsModuleRules\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.ProjectDir = C:\Users\hamil\OneDrive\Documents\GitHub\AimAssitanceHons_KyleH\AimAssistHons\Intermediate\Build\BuildRulesProjects\AimAssistHonsModuleRules\

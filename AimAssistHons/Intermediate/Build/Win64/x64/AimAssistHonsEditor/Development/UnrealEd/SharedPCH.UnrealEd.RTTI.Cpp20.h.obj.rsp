@@ -1,4 +1,4 @@
-"C:\Users\2101598\OneDrive - Abertay University\Documents\GitHub\AimAssitanceHons_KyleH\AimAssistHons\Intermediate\Build\Win64\x64\AimAssistHonsEditor\Development\UnrealEd\SharedPCH.UnrealEd.RTTI.Cpp20.cpp"
+"C:\Users\hamil\OneDrive\Documents\GitHub\AimAssitanceHons_KyleH\AimAssistHons\Intermediate\Build\Win64\x64\AimAssistHonsEditor\Development\UnrealEd\SharedPCH.UnrealEd.RTTI.Cpp20.cpp"
 /I "."
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\UnrealEd\UHT"
 /I "Programs\UnrealLightmass\Public"
@@ -222,6 +222,7 @@
 /I "Developer\CollectionManager\Public"
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\ContentBrowserData\UHT"
 /I "Editor\ContentBrowserData\Public"
+/I "ThirdParty\libSampleRate\Public"
 /I "Runtime\NetworkFileSystem\Public"
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\UMG\UHT"
 /I "Runtime\UMG\Public"
@@ -284,15 +285,15 @@
 /external:W0
 /external:I "ThirdParty\LibTiff\Source\Win64"
 /external:I "ThirdParty\LibTiff\Source"
-/external:I "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.41.34120\INCLUDE"
+/external:I "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\INCLUDE"
 /external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt"
 /external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\shared"
 /external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\um"
 /external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\winrt"
-/Yc"C:\Users\2101598\OneDrive - Abertay University\Documents\GitHub\AimAssitanceHons_KyleH\AimAssistHons\Intermediate\Build\Win64\x64\AimAssistHonsEditor\Development\UnrealEd\SharedPCH.UnrealEd.RTTI.Cpp20.h"
-/Fp"C:\Users\2101598\OneDrive - Abertay University\Documents\GitHub\AimAssitanceHons_KyleH\AimAssistHons\Intermediate\Build\Win64\x64\AimAssistHonsEditor\Development\UnrealEd\SharedPCH.UnrealEd.RTTI.Cpp20.h.pch"
-/Fo"C:\Users\2101598\OneDrive - Abertay University\Documents\GitHub\AimAssitanceHons_KyleH\AimAssistHons\Intermediate\Build\Win64\x64\AimAssistHonsEditor\Development\UnrealEd\SharedPCH.UnrealEd.RTTI.Cpp20.h.obj"
-/sourceDependencies "C:\Users\2101598\OneDrive - Abertay University\Documents\GitHub\AimAssitanceHons_KyleH\AimAssistHons\Intermediate\Build\Win64\x64\AimAssistHonsEditor\Development\UnrealEd\SharedPCH.UnrealEd.RTTI.Cpp20.h.dep.json"
+/Yc"C:\Users\hamil\OneDrive\Documents\GitHub\AimAssitanceHons_KyleH\AimAssistHons\Intermediate\Build\Win64\x64\AimAssistHonsEditor\Development\UnrealEd\SharedPCH.UnrealEd.RTTI.Cpp20.h"
+/Fp"C:\Users\hamil\OneDrive\Documents\GitHub\AimAssitanceHons_KyleH\AimAssistHons\Intermediate\Build\Win64\x64\AimAssistHonsEditor\Development\UnrealEd\SharedPCH.UnrealEd.RTTI.Cpp20.h.pch"
+/Fo"C:\Users\hamil\OneDrive\Documents\GitHub\AimAssitanceHons_KyleH\AimAssistHons\Intermediate\Build\Win64\x64\AimAssistHonsEditor\Development\UnrealEd\SharedPCH.UnrealEd.RTTI.Cpp20.h.obj"
+/sourceDependencies "C:\Users\hamil\OneDrive\Documents\GitHub\AimAssitanceHons_KyleH\AimAssistHons\Intermediate\Build\Win64\x64\AimAssistHonsEditor\Development\UnrealEd\SharedPCH.UnrealEd.RTTI.Cpp20.h.dep.json"
 /Zc:inline
 /nologo
 /Oi

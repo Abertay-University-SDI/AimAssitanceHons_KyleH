@@ -50,44 +50,49 @@ void AAimAssistHonsCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	FVector playerForwardVectNorm = GetActorForwardVector();
+	if (target)
+	{
+		FVector playerForwardVectNorm = FirstPersonCameraComponent->GetForwardVector();
+		playerForwardVectNorm.Normalize();
 
-	FVector TargetVectorNorm = target->GetActorLocation() - GetOwner()->GetActorLocation();//get vector from player to target
-	TargetVectorNorm.Normalize();
-
-	//get angle between player->Target and player forward vector
-	angle = (180.0) / UE_DOUBLE_PI * FMath::Acos(FVector::DotProduct(playerForwardVectNorm.GetSafeNormal(0.0001), TargetVectorNorm));
-
-	//TO DO: TARGET GRAVITY NOT WORKING, CLOSEST I GOT WAS ADDCONTROLLERYAWINPUT BUT EVEN THAT WAS GLITCHY. TRY SOMETHING!!!
-	
-	//if (angle >= 0.99)
-	//{
-	//	isRotating = false;
-	//}
-	//else
-	//{
-
-	//	FRotator targetRotation = TargetVectorNorm.Rotation();
-
-	//	FRotator NewRotation = FMath::RInterpTo(GetActorRotation(), targetRotation, DeltaTime, 5);
-	//	SetActorRotation(NewRotation);
-
-	//	//float TargetGravityInput = FMath::Atan2(TargetVectorNorm.Y, TargetVectorNorm.X);
-
-	//	////radians to degrees
-	//	//float RtoD = FMath::RadiansToDegrees(TargetGravityInput);
-	//	//AddControllerYawInput(RtoD * 1 * DeltaTime);
-	//}
+		FVector TargetVectorNorm = target->GetActorLocation() - FirstPersonCameraComponent->GetComponentLocation();//get vector from player to target
+		TargetVectorNorm.Normalize();
 
 
-	
-	//SetActorRotation(FMath::RInterpTo(GetActorRotation(), FRotator(angle), DeltaTime, 10));
+		//get angle between player->Target and player forward vector
+		angle = (180.0) / UE_DOUBLE_PI * FMath::Acos(FVector::DotProduct(playerForwardVectNorm, TargetVectorNorm));
+
+		//TO DO: TARGET GRAVITY NOT WORKING, CLOSEST I GOT WAS ADDCONTROLLERYAWINPUT BUT EVEN THAT WAS GLITCHY. TRY SOMETHING!!!
+
+		//if (angle >= 0.99)
+		//{
+		//	isRotating = false;
+		//}
+		//else
+		//{
+
+		//	FRotator targetRotation = TargetVectorNorm.Rotation();
+
+		//	FRotator NewRotation = FMath::RInterpTo(GetActorRotation(), targetRotation, DeltaTime, 5);
+		//	SetActorRotation(NewRotation);
+
+		//	//float TargetGravityInput = FMath::Atan2(TargetVectorNorm.Y, TargetVectorNorm.X);
+
+		//	////radians to degrees
+		//	//float RtoD = FMath::RadiansToDegrees(TargetGravityInput);
+		//	//AddControllerYawInput(RtoD * 1 * DeltaTime);
+		//}
 
 
 
-	//debug lines
-	FString FloatMessage = FString::Printf(TEXT("The value of MyFloat is: %f"), angle);
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FloatMessage);
+		//SetActorRotation(FMath::RInterpTo(GetActorRotation(), FRotator(angle), DeltaTime, 10));
+
+
+
+		//debug lines
+		//FString FloatMessage = FString::Printf(TEXT("The value of MyFloat is: %f"), angle);
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FloatMessage);
+	}
 }
 
 void AAimAssistHonsCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -122,36 +127,49 @@ void AAimAssistHonsCharacter::Look(const FInputActionValue& Value)
 
 void AAimAssistHonsCharacter::Shoot(const FInputActionValue& Value)
 {
+	//increment the number of times the player has shot the weapon to calculate the accuracy rating
+	shotGun++;
+	
 	//get player controller
 	APlayerController* PlayerController = Cast<APlayerController>(GetController());
-
+	
 	const FRotator SpawnRotation = PlayerController->PlayerCameraManager->GetCameraRotation();
-
-	const FVector SpawnLocation = GetOwner()->GetActorLocation();
-
+	
 	FCollisionQueryParams TraceParams(FName(TEXT("TraceTag")), true, nullptr);//used to specify parameters for collision 
 	FHitResult HitResult;
-
+	
 	bool hit;
-
+	
 	//bullet magnetism. If players forward vector is within 10 degrees of the target the let them shoot it.
 
-	//TO DO: GLITCH WHERE ANGLE OS NOT ACCURATE AFTER SHOOTING
+	//start and end of the line trace
+	FVector Start = FirstPersonCameraComponent->GetComponentLocation();
+	FVector End;
+
 	if (angle > 10)
 	{
-		//traces a line from the player to the first point of collision 
-		hit = GetWorld()->LineTraceSingleByChannel(HitResult, SpawnLocation, UKismetMathLibrary::GetForwardVector(SpawnRotation) * 50000, ECC_Visibility, TraceParams);
+		End = FirstPersonCameraComponent->GetComponentLocation() + UKismetMathLibrary::GetForwardVector(SpawnRotation) * 50000;
 	}
 	else
 	{
-		hit = GetWorld()->LineTraceSingleByChannel(HitResult, SpawnLocation, target->GetActorLocation(), ECC_Visibility, TraceParams);
+		End = (target->GetActorLocation() - FirstPersonCameraComponent->GetComponentLocation()) * 50000;
 	}
+
+	//traces a line from the player to the first point of collision 
+	hit = GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility, TraceParams);
+	
+	//debug lines
+	/*FColor LineColor = hit ? FColor::Red : FColor::Green;
+
+	DrawDebugLine(GetWorld(), Start, End, LineColor, false, 1.0f, 0, 1.0f);*/
 
 	if (hit)
 	{
 		if (ATarget* hitTarget = Cast<ATarget>(HitResult.GetActor()))
 		{
-			UE_LOG(LogTemplateCharacter, Error, TEXT("sausages!"), *GetNameSafe(this));
+			targetShot++;
+	
+			//UE_LOG(LogTemplateCharacter, Error, TEXT("hit target!"), *GetNameSafe(this));
 			targetHit = true;
 			hitTarget->moveTarget(targetHit);
 		}

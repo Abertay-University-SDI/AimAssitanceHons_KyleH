@@ -1,0 +1,33 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\hamil\\onedrive\\documents\\github\\aimassitancehons_kyleh\\aimassisthons\\intermediate\\build\\win64\\unrealgame\\inc\\aimassisthons\\uht\\tp_pickupcomponent.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\hamil\\onedrive\\documents\\github\\aimassitancehons_kyleh\\aimassisthons\\intermediate\\build\\win64\\x64\\aimassisthons\\development\\engine\\sharedpch.engine.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\hamil\\onedrive\\documents\\github\\aimassitancehons_kyleh\\aimassisthons\\intermediate\\build\\win64\\x64\\unrealgame\\development\\aimassisthons\\definitions.aimassisthons.h",
+            "c:\\users\\hamil\\onedrive\\documents\\github\\aimassitancehons_kyleh\\aimassisthons\\source\\aimassisthons\\tp_pickupcomponent.h",
+            "c:\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\components\\spherecomponent.h",
+            "c:\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\components\\shapecomponent.h",
+            "c:\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealgame\\inc\\engine\\uht\\shapecomponent.generated.h",
+            "c:\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealgame\\inc\\engine\\uht\\spherecomponent.generated.h",
+            "c:\\users\\hamil\\onedrive\\documents\\github\\aimassitancehons_kyleh\\aimassisthons\\source\\aimassisthons\\aimassisthonscharacter.h",
+            "c:\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\gameframework\\character.h",
+            "c:\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\gameframework\\charactermovementreplication.h",
+            "c:\\ue_5.4\\engine\\source\\runtime\\experimental\\iris\\core\\public\\iris\\serialization\\irisobjectreferencepackagemap.h",
+            "c:\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealgame\\inc\\iriscore\\uht\\irisobjectreferencepackagemap.generated.h",
+            "c:\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealgame\\inc\\engine\\uht\\charactermovementreplication.generated.h",
+            "c:\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\gameframework\\rootmotionsource.h",
+            "c:\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealgame\\inc\\engine\\uht\\rootmotionsource.generated.h",
+            "c:\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealgame\\inc\\engine\\uht\\character.generated.h",
+            "c:\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\kismet\\kismetmateriallibrary.h",
+            "c:\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealgame\\inc\\engine\\uht\\kismetmateriallibrary.generated.h",
+            "c:\\users\\hamil\\onedrive\\documents\\github\\aimassitancehons_kyleh\\aimassisthons\\source\\aimassisthons\\target.h",
+            "c:\\users\\hamil\\onedrive\\documents\\github\\aimassitancehons_kyleh\\aimassisthons\\intermediate\\build\\win64\\unrealgame\\inc\\aimassisthons\\uht\\target.generated.h",
+            "c:\\users\\hamil\\onedrive\\documents\\github\\aimassitancehons_kyleh\\aimassisthons\\intermediate\\build\\win64\\unrealgame\\inc\\aimassisthons\\uht\\aimassisthonscharacter.generated.h",
+            "c:\\users\\hamil\\onedrive\\documents\\github\\aimassitancehons_kyleh\\aimassisthons\\intermediate\\build\\win64\\unrealgame\\inc\\aimassisthons\\uht\\tp_pickupcomponent.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

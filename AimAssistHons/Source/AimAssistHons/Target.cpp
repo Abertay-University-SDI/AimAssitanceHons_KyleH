@@ -22,18 +22,13 @@ ATarget::ATarget()
 void ATarget::BeginPlay()
 {
 	Super::BeginPlay();
-
-	//glitch sometimes happens where sphere is not begin calculated from correct location 
-	//hopefully hardsetting its location stop it from happening. :)
-	this->SetActorLocation(FVector(1520.000000, 700.000000, 190.000000));
 }
 
 void ATarget::moveTarget(bool &hit)
 {
 	//set to knew random location within the bounds of the aiming area
 	//DO NOT CHANGE THESE VALUES
-	this->SetActorLocation(FVector(FMath::FRandRange(932.0f, 2080.0f), FMath::FRandRange(320.0, 860.0), FMath::FRandRange(98.0, 466.0f)));
-	//SetWorldLocation(FVector(FMath::FRandRange(932.0f, 2080.0f), FMath::FRandRange(320.0, 860.0), FMath::FRandRange(98.0, 466.0f)));
+	SetActorLocation(FVector(FMath::FRandRange(932.0f, 2080.0f), FMath::FRandRange(320.0, 860.0), FMath::FRandRange(98.0, 466.0f)));
 	hit = false;
 }
 

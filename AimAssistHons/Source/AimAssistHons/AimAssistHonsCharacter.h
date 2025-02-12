@@ -37,6 +37,7 @@ class AAimAssistHonsCharacter : public ACharacter
 	bool isRotating = true;
 	float angle = 0.0f;
 
+
 public:
 	AAimAssistHonsCharacter();
 
@@ -57,6 +58,14 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	ATarget* target;
+
+
+	//accuracy vars
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	int targetShot = 0;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	int shotGun = 0;
 
 protected:
 	/** Called for looking input */
