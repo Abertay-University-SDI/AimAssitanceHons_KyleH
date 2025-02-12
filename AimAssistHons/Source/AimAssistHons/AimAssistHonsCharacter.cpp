@@ -82,16 +82,50 @@ void AAimAssistHonsCharacter::Tick(float DeltaTime)
 		//	//float RtoD = FMath::RadiansToDegrees(TargetGravityInput);
 		//	//AddControllerYawInput(RtoD * 1 * DeltaTime);
 		//}
-
-
-
 		//SetActorRotation(FMath::RInterpTo(GetActorRotation(), FRotator(angle), DeltaTime, 10));
+
+
+		//if angle is less than 15 degrees then move player forward vector to vector player->target.
+		//make sure this doesnt happen every frame only when is both less than 15 degrees and greater than 0 degrees
+
+		//FRotator newActorRotate;
+
+		//newActorRotate.Yaw = target->GetActorLocation().X;
+		////newActorRotate.Roll = target->GetActorLocation().Z;
+		//newActorRotate.Pitch = target->GetActorLocation().Y;
+
+		/*FVector2D targetGravityMove;
+		targetGravityMove.X = target->GetActorLocation().X - GetOwner()->GetActorLocation().X;
+		targetGravityMove.Y = target->GetActorLocation().Y - GetOwner()->GetActorLocation().Y;*/
+
+		FRotator TargetGravityRotator = UKismetMathLibrary::FindLookAtRotation(FirstPersonCameraComponent->GetComponentLocation(), target->GetActorLocation());
+		if (angle <= 15 && angle > 3)
+		{
+
+			/*FQuat currentQuat = FirstPersonCameraComponent->GetComponentRotation().Quaternion();
+			FQuat targetQuat = TargetGravityRotator.Quaternion();
+			FQuat newQuat = FQuat::Slerp(currentQuat, targetQuat, DeltaTime * 2.5);
+			Controller->SetControlRotation(newQuat.Rotator());*/
+
+			if (!FirstPersonCameraComponent->GetComponentRotation().Equals(TargetGravityRotator, 0.1f))
+			{
+				Controller->SetControlRotation(UKismetMathLibrary::RInterpTo(FirstPersonCameraComponent->GetComponentRotation(), TargetGravityRotator, DeltaTime, 10));
+			}
+
+			/*	float NewPitch = FMath::FInterpTo(FirstPersonCameraComponent->GetComponentRotation().Pitch, TargetGravityRotator.Pitch, DeltaTime, 5);
+				float NewYaw = FMath::FInterpTo(FirstPersonCameraComponent->GetComponentRotation().Yaw, TargetGravityRotator.Yaw, DeltaTime, 5);
+
+				Controller->SetControlRotation(FRotator(NewPitch, NewYaw, FirstPersonCameraComponent->GetComponentRotation().Roll));*/
+
+				/*AddControllerYawInput(-target->GetActorLocation().X);
+				AddControllerPitchInput(-target->GetActorLocation().Y);*/
+		}
 
 
 
 		//debug lines
-		//FString FloatMessage = FString::Printf(TEXT("The value of MyFloat is: %f"), angle);
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FloatMessage);
+		FString FloatMessage = FString::Printf(TEXT("The value of MyFloat is: %f"), angle);
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FloatMessage);
 	}
 }
 
