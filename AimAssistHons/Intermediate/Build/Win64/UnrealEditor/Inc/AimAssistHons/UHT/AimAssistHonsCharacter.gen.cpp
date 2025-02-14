@@ -101,14 +101,30 @@ struct Z_Construct_UClass_AAimAssistHonsCharacter_Statics
 		{ "Category", "AimAssistHonsCharacter" },
 		{ "ModuleRelativePath", "AimAssistHonsCharacter.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_accuracy_MetaData[] = {
+		{ "Category", "AimAssistHonsCharacter" },
+		{ "ModuleRelativePath", "AimAssistHonsCharacter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_aimAssistLimit_MetaData[] = {
+		{ "Category", "AimAssistHonsCharacter" },
+		{ "ModuleRelativePath", "AimAssistHonsCharacter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_aimAssistOn_MetaData[] = {
+		{ "Category", "AimAssistHonsCharacter" },
+		{ "ModuleRelativePath", "AimAssistHonsCharacter.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Mesh1P;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_FirstPersonCameraComponent;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_LookAction;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ShootAction;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_target;
-	static const UECodeGen_Private::FIntPropertyParams NewProp_targetShot;
-	static const UECodeGen_Private::FIntPropertyParams NewProp_shotGun;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_targetShot;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_shotGun;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_accuracy;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_aimAssistLimit;
+	static void NewProp_aimAssistOn_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_aimAssistOn;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -121,8 +137,15 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAimAssistHons
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_LookAction = { "LookAction", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAimAssistHonsCharacter, LookAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LookAction_MetaData), NewProp_LookAction_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_ShootAction = { "ShootAction", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAimAssistHonsCharacter, ShootAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ShootAction_MetaData), NewProp_ShootAction_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_target = { "target", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAimAssistHonsCharacter, target), Z_Construct_UClass_ATarget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_target_MetaData), NewProp_target_MetaData) };
-const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_targetShot = { "targetShot", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAimAssistHonsCharacter, targetShot), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_targetShot_MetaData), NewProp_targetShot_MetaData) };
-const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_shotGun = { "shotGun", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAimAssistHonsCharacter, shotGun), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_shotGun_MetaData), NewProp_shotGun_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_targetShot = { "targetShot", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAimAssistHonsCharacter, targetShot), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_targetShot_MetaData), NewProp_targetShot_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_shotGun = { "shotGun", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAimAssistHonsCharacter, shotGun), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_shotGun_MetaData), NewProp_shotGun_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_accuracy = { "accuracy", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAimAssistHonsCharacter, accuracy), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_accuracy_MetaData), NewProp_accuracy_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_aimAssistLimit = { "aimAssistLimit", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAimAssistHonsCharacter, aimAssistLimit), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_aimAssistLimit_MetaData), NewProp_aimAssistLimit_MetaData) };
+void Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_aimAssistOn_SetBit(void* Obj)
+{
+	((AAimAssistHonsCharacter*)Obj)->aimAssistOn = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_aimAssistOn = { "aimAssistOn", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AAimAssistHonsCharacter), &Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_aimAssistOn_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_aimAssistOn_MetaData), NewProp_aimAssistOn_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AAimAssistHonsCharacter_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_Mesh1P,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_FirstPersonCameraComponent,
@@ -131,6 +154,9 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AAimAssis
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_target,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_targetShot,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_shotGun,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_accuracy,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_aimAssistLimit,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_aimAssistOn,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AAimAssistHonsCharacter_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AAimAssistHonsCharacter_Statics::DependentSingletons[])() = {
@@ -170,14 +196,14 @@ AAimAssistHonsCharacter::~AAimAssistHonsCharacter() {}
 // End Class AAimAssistHonsCharacter
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_hamil_OneDrive_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_Statics
+struct Z_CompiledInDeferFile_FID_Users_2101598_OneDrive___Abertay_University_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AAimAssistHonsCharacter, AAimAssistHonsCharacter::StaticClass, TEXT("AAimAssistHonsCharacter"), &Z_Registration_Info_UClass_AAimAssistHonsCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAimAssistHonsCharacter), 3762791806U) },
+		{ Z_Construct_UClass_AAimAssistHonsCharacter, AAimAssistHonsCharacter::StaticClass, TEXT("AAimAssistHonsCharacter"), &Z_Registration_Info_UClass_AAimAssistHonsCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAimAssistHonsCharacter), 2391402117U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_hamil_OneDrive_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_2865803913(TEXT("/Script/AimAssistHons"),
-	Z_CompiledInDeferFile_FID_Users_hamil_OneDrive_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_hamil_OneDrive_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_2101598_OneDrive___Abertay_University_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_2241993800(TEXT("/Script/AimAssistHons"),
+	Z_CompiledInDeferFile_FID_Users_2101598_OneDrive___Abertay_University_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_2101598_OneDrive___Abertay_University_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

@@ -35,7 +35,6 @@ AAimAssistHonsCharacter::AAimAssistHonsCharacter()
 	Mesh1P->SetupAttachment(FirstPersonCameraComponent);
 	Mesh1P->bCastDynamicShadow = false;
 	Mesh1P->CastShadow = false;
-	//Mesh1P->SetRelativeRotation(FRotator(0.9f, -19.19f, 5.2f));
 	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
 
 }
@@ -50,6 +49,11 @@ void AAimAssistHonsCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+
+	accuracy = (targetShot / shotGun) * 100;
+
+	if (isnan(accuracy)) accuracy = 0;
+
 	if (target)
 	{
 		FVector playerForwardVectNorm = FirstPersonCameraComponent->GetForwardVector();
@@ -58,74 +62,46 @@ void AAimAssistHonsCharacter::Tick(float DeltaTime)
 		FVector TargetVectorNorm = target->GetActorLocation() - FirstPersonCameraComponent->GetComponentLocation();//get vector from player to target
 		TargetVectorNorm.Normalize();
 
-
-		//get angle between player->Target and player forward vector
-		angle = (180.0) / UE_DOUBLE_PI * FMath::Acos(FVector::DotProduct(playerForwardVectNorm, TargetVectorNorm));
-
-		//TO DO: TARGET GRAVITY NOT WORKING, CLOSEST I GOT WAS ADDCONTROLLERYAWINPUT BUT EVEN THAT WAS GLITCHY. TRY SOMETHING!!!
-
-		//if (angle >= 0.99)
-		//{
-		//	isRotating = false;
-		//}
-		//else
-		//{
-
-		//	FRotator targetRotation = TargetVectorNorm.Rotation();
-
-		//	FRotator NewRotation = FMath::RInterpTo(GetActorRotation(), targetRotation, DeltaTime, 5);
-		//	SetActorRotation(NewRotation);
-
-		//	//float TargetGravityInput = FMath::Atan2(TargetVectorNorm.Y, TargetVectorNorm.X);
-
-		//	////radians to degrees
-		//	//float RtoD = FMath::RadiansToDegrees(TargetGravityInput);
-		//	//AddControllerYawInput(RtoD * 1 * DeltaTime);
-		//}
-		//SetActorRotation(FMath::RInterpTo(GetActorRotation(), FRotator(angle), DeltaTime, 10));
-
-
-		//if angle is less than 15 degrees then move player forward vector to vector player->target.
-		//make sure this doesnt happen every frame only when is both less than 15 degrees and greater than 0 degrees
-
-		//FRotator newActorRotate;
-
-		//newActorRotate.Yaw = target->GetActorLocation().X;
-		////newActorRotate.Roll = target->GetActorLocation().Z;
-		//newActorRotate.Pitch = target->GetActorLocation().Y;
-
-		/*FVector2D targetGravityMove;
-		targetGravityMove.X = target->GetActorLocation().X - GetOwner()->GetActorLocation().X;
-		targetGravityMove.Y = target->GetActorLocation().Y - GetOwner()->GetActorLocation().Y;*/
-
-		FRotator TargetGravityRotator = UKismetMathLibrary::FindLookAtRotation(FirstPersonCameraComponent->GetComponentLocation(), target->GetActorLocation());
-		if (angle <= 15 && angle > 3)
+		if (aimAssistOn)
 		{
+			//get angle between player->Target and player forward vector
+			angle = (180.0) / UE_DOUBLE_PI * FMath::Acos(FVector::DotProduct(playerForwardVectNorm, TargetVectorNorm));
 
-			/*FQuat currentQuat = FirstPersonCameraComponent->GetComponentRotation().Quaternion();
-			FQuat targetQuat = TargetGravityRotator.Quaternion();
-			FQuat newQuat = FQuat::Slerp(currentQuat, targetQuat, DeltaTime * 2.5);
-			Controller->SetControlRotation(newQuat.Rotator());*/
 
-			if (!FirstPersonCameraComponent->GetComponentRotation().Equals(TargetGravityRotator, 0.1f))
+			//if angle is less than 15 degrees then move player forward vector to vector player->target.
+			//make sure this doesnt happen every frame only when is both less than 15 degrees and greater than 0 degrees
+			FRotator TargetGravityRotator = UKismetMathLibrary::FindLookAtRotation(FirstPersonCameraComponent->GetComponentLocation(), target->GetActorLocation());
+
+			/*	if accuracy 100 % then aim assst off
+				if accuracy is less than 100 and greater than 75 then angle = 3.75
+				if accuracy is less than 75 and greater than 50 then angle = 7.5
+				if accuracy is less than 50 and greater than 25 then angle = 11.25
+				is accuracy = 0 then angle = 15
+			*/
+
+			//change the limit at which aim assist occurs based on how accurate the player is.
+			if (accuracy >= 95) aimAssistLimit = 2;
+			if (accuracy < 95 && accuracy >= 75) aimAssistLimit = 5;
+			if (accuracy < 75 && accuracy >= 50) aimAssistLimit = 10;
+			if (accuracy < 50 && accuracy >= 25) aimAssistLimit = 15;
+			if (accuracy < 25 && accuracy >= 0) aimAssistLimit = 20;
+
+			////debug lines
+			//FString FloatMessage = FString::Printf(TEXT("current limit: %f"), aimAssistLimit);
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FloatMessage);
+
+			if (angle <= aimAssistLimit && angle > 1)
 			{
-				Controller->SetControlRotation(UKismetMathLibrary::RInterpTo(FirstPersonCameraComponent->GetComponentRotation(), TargetGravityRotator, DeltaTime, 10));
+				if (!FirstPersonCameraComponent->GetComponentRotation().Equals(TargetGravityRotator, 0.1f))
+				{
+					Controller->SetControlRotation(UKismetMathLibrary::RInterpTo(FirstPersonCameraComponent->GetComponentRotation(), TargetGravityRotator, DeltaTime, 10));
+				}
 			}
 
-			/*	float NewPitch = FMath::FInterpTo(FirstPersonCameraComponent->GetComponentRotation().Pitch, TargetGravityRotator.Pitch, DeltaTime, 5);
-				float NewYaw = FMath::FInterpTo(FirstPersonCameraComponent->GetComponentRotation().Yaw, TargetGravityRotator.Yaw, DeltaTime, 5);
-
-				Controller->SetControlRotation(FRotator(NewPitch, NewYaw, FirstPersonCameraComponent->GetComponentRotation().Roll));*/
-
-				/*AddControllerYawInput(-target->GetActorLocation().X);
-				AddControllerPitchInput(-target->GetActorLocation().Y);*/
+			////debug lines
+			//FString FloatMessage = FString::Printf(TEXT("The value of MyFloat is: %f"), angle);
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FloatMessage);
 		}
-
-
-
-		//debug lines
-		FString FloatMessage = FString::Printf(TEXT("The value of MyFloat is: %f"), angle);
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FloatMessage);
 	}
 }
 
@@ -180,7 +156,7 @@ void AAimAssistHonsCharacter::Shoot(const FInputActionValue& Value)
 	FVector Start = FirstPersonCameraComponent->GetComponentLocation();
 	FVector End;
 
-	if (angle > 10)
+	if (angle > 10 || !aimAssistOn)
 	{
 		End = FirstPersonCameraComponent->GetComponentLocation() + UKismetMathLibrary::GetForwardVector(SpawnRotation) * 50000;
 	}
@@ -191,19 +167,12 @@ void AAimAssistHonsCharacter::Shoot(const FInputActionValue& Value)
 
 	//traces a line from the player to the first point of collision 
 	hit = GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility, TraceParams);
-	
-	//debug lines
-	/*FColor LineColor = hit ? FColor::Red : FColor::Green;
-
-	DrawDebugLine(GetWorld(), Start, End, LineColor, false, 1.0f, 0, 1.0f);*/
 
 	if (hit)
 	{
 		if (ATarget* hitTarget = Cast<ATarget>(HitResult.GetActor()))
 		{
 			targetShot++;
-	
-			//UE_LOG(LogTemplateCharacter, Error, TEXT("hit target!"), *GetNameSafe(this));
 			targetHit = true;
 			hitTarget->moveTarget(targetHit);
 		}

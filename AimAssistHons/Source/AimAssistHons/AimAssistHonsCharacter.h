@@ -35,7 +35,10 @@ class AAimAssistHonsCharacter : public ACharacter
 
 	bool targetHit = false;
 	bool isRotating = true;
+
 	float angle = 0.0f;
+	
+
 
 
 public:
@@ -62,10 +65,19 @@ public:
 
 	//accuracy vars
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	int targetShot = 0;
+	float targetShot = 0.0f;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	int shotGun = 0;
+	float shotGun = 0.0f;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	float accuracy = 0.0f;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	float aimAssistLimit = 15.0f;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool aimAssistOn = false;
 
 protected:
 	/** Called for looking input */
