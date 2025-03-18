@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
 #include "Kismet/KismetMaterialLibrary.h"
+#include "Kismet/GameplayStatics.h"
 #include "Target.h"
 #include "AimAssistHonsCharacter.generated.h"
 
@@ -35,6 +36,8 @@ class AAimAssistHonsCharacter : public ACharacter
 
 	bool targetHit = false;
 	bool isRotating = true;
+
+	bool AimAssistHelper = false;
 
 	float angle = 0.0f;
 	
@@ -78,6 +81,10 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool aimAssistOn = false;
+
+	//sound effect
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USoundBase* soundCue;
 
 protected:
 	/** Called for looking input */

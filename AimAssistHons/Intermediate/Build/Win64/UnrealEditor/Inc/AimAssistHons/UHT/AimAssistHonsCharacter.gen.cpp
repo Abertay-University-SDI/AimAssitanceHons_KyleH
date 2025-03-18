@@ -16,6 +16,7 @@ AIMASSISTHONS_API UClass* Z_Construct_UClass_ATarget_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
+ENGINE_API UClass* Z_Construct_UClass_USoundBase_NoRegister();
 ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputAction_NoRegister();
 UPackage* Z_Construct_UPackage__Script_AimAssistHons();
 // End Cross Module References
@@ -113,6 +114,16 @@ struct Z_Construct_UClass_AAimAssistHonsCharacter_Statics
 		{ "Category", "AimAssistHonsCharacter" },
 		{ "ModuleRelativePath", "AimAssistHonsCharacter.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_soundCue_MetaData[] = {
+		{ "Category", "AimAssistHonsCharacter" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//sound effect\n" },
+#endif
+		{ "ModuleRelativePath", "AimAssistHonsCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "sound effect" },
+#endif
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Mesh1P;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_FirstPersonCameraComponent;
@@ -125,6 +136,7 @@ struct Z_Construct_UClass_AAimAssistHonsCharacter_Statics
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_aimAssistLimit;
 	static void NewProp_aimAssistOn_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_aimAssistOn;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_soundCue;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -146,6 +158,7 @@ void Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_aimAssistOn_Set
 	((AAimAssistHonsCharacter*)Obj)->aimAssistOn = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_aimAssistOn = { "aimAssistOn", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AAimAssistHonsCharacter), &Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_aimAssistOn_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_aimAssistOn_MetaData), NewProp_aimAssistOn_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_soundCue = { "soundCue", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAimAssistHonsCharacter, soundCue), Z_Construct_UClass_USoundBase_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_soundCue_MetaData), NewProp_soundCue_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AAimAssistHonsCharacter_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_Mesh1P,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_FirstPersonCameraComponent,
@@ -157,6 +170,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AAimAssis
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_accuracy,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_aimAssistLimit,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_aimAssistOn,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAimAssistHonsCharacter_Statics::NewProp_soundCue,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AAimAssistHonsCharacter_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AAimAssistHonsCharacter_Statics::DependentSingletons[])() = {
@@ -196,14 +210,14 @@ AAimAssistHonsCharacter::~AAimAssistHonsCharacter() {}
 // End Class AAimAssistHonsCharacter
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_2101598_OneDrive___Abertay_University_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_Statics
+struct Z_CompiledInDeferFile_FID_Users_hamil_OneDrive_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AAimAssistHonsCharacter, AAimAssistHonsCharacter::StaticClass, TEXT("AAimAssistHonsCharacter"), &Z_Registration_Info_UClass_AAimAssistHonsCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAimAssistHonsCharacter), 2391402117U) },
+		{ Z_Construct_UClass_AAimAssistHonsCharacter, AAimAssistHonsCharacter::StaticClass, TEXT("AAimAssistHonsCharacter"), &Z_Registration_Info_UClass_AAimAssistHonsCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAimAssistHonsCharacter), 1742935043U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_2101598_OneDrive___Abertay_University_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_2241993800(TEXT("/Script/AimAssistHons"),
-	Z_CompiledInDeferFile_FID_Users_2101598_OneDrive___Abertay_University_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_2101598_OneDrive___Abertay_University_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_hamil_OneDrive_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_422804457(TEXT("/Script/AimAssistHons"),
+	Z_CompiledInDeferFile_FID_Users_hamil_OneDrive_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_hamil_OneDrive_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

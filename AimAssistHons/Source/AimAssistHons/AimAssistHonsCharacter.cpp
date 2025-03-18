@@ -62,12 +62,16 @@ void AAimAssistHonsCharacter::Tick(float DeltaTime)
 		FVector TargetVectorNorm = target->GetActorLocation() - FirstPersonCameraComponent->GetComponentLocation();//get vector from player to target
 		TargetVectorNorm.Normalize();
 
-		if (aimAssistOn)
+		//get angle between player->Target and player forward vector
+		angle = (180.0) / UE_DOUBLE_PI * FMath::Acos(FVector::DotProduct(playerForwardVectNorm, TargetVectorNorm));
+
+		if (angle <= 2) AimAssistHelper = false;
+		
+
+		if (angle >= aimAssistLimit) AimAssistHelper = true;
+
+		if (aimAssistOn && AimAssistHelper)
 		{
-			//get angle between player->Target and player forward vector
-			angle = (180.0) / UE_DOUBLE_PI * FMath::Acos(FVector::DotProduct(playerForwardVectNorm, TargetVectorNorm));
-
-
 			//if angle is less than 15 degrees then move player forward vector to vector player->target.
 			//make sure this doesnt happen every frame only when is both less than 15 degrees and greater than 0 degrees
 			FRotator TargetGravityRotator = UKismetMathLibrary::FindLookAtRotation(FirstPersonCameraComponent->GetComponentLocation(), target->GetActorLocation());
@@ -80,8 +84,8 @@ void AAimAssistHonsCharacter::Tick(float DeltaTime)
 			*/
 
 			//change the limit at which aim assist occurs based on how accurate the player is.
-			if (accuracy >= 95) aimAssistLimit = 2;
-			if (accuracy < 95 && accuracy >= 75) aimAssistLimit = 5;
+			//if (accuracy >= 95) aimAssistLimit = 2;
+			if (accuracy >= 75) aimAssistLimit = 5;
 			if (accuracy < 75 && accuracy >= 50) aimAssistLimit = 10;
 			if (accuracy < 50 && accuracy >= 25) aimAssistLimit = 15;
 			if (accuracy < 25 && accuracy >= 0) aimAssistLimit = 20;
@@ -101,6 +105,8 @@ void AAimAssistHonsCharacter::Tick(float DeltaTime)
 			////debug lines
 			//FString FloatMessage = FString::Printf(TEXT("The value of MyFloat is: %f"), angle);
 			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FloatMessage);
+
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, AimAssistHelper ? TEXT("True") : TEXT("False"));
 		}
 	}
 }
@@ -137,6 +143,14 @@ void AAimAssistHonsCharacter::Look(const FInputActionValue& Value)
 
 void AAimAssistHonsCharacter::Shoot(const FInputActionValue& Value)
 {
+
+	//check if the game is counting down to start, therefore dont let player shooot.
+	if (APlayerController* PC = Cast<APlayerController>(GetController()))
+	{
+		if (PC->IsLookInputIgnored()) return;
+	}
+
+
 	//increment the number of times the player has shot the weapon to calculate the accuracy rating
 	shotGun++;
 	
@@ -175,6 +189,15 @@ void AAimAssistHonsCharacter::Shoot(const FInputActionValue& Value)
 			targetShot++;
 			targetHit = true;
 			hitTarget->moveTarget(targetHit);
+
+			AimAssistHelper = true;
+
+			//play sound effect for hitting target
+			if (soundCue)
+			{
+				UGameplayStatics::PlaySound2D(this, soundCue);
+			}
+
 		}
 	}
 }
