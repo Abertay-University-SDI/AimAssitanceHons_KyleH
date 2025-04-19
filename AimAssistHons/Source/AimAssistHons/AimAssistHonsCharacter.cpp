@@ -49,64 +49,53 @@ void AAimAssistHonsCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-
+	//gets accuracy value
 	accuracy = (targetShot / shotGun) * 100;
 
+	//ensures that the accuracy value sent is recognised number
 	if (isnan(accuracy)) accuracy = 0;
 
-	if (target)
+	if (target) //checks that target has a value
 	{
+		//gets player forward vector and normalises it
 		FVector playerForwardVectNorm = FirstPersonCameraComponent->GetForwardVector();
 		playerForwardVectNorm.Normalize();
 
-		FVector TargetVectorNorm = target->GetActorLocation() - FirstPersonCameraComponent->GetComponentLocation();//get vector from player to target
+		//gets vector from player to target and normalises it
+		FVector TargetVectorNorm = target->GetActorLocation() - FirstPersonCameraComponent->GetComponentLocation();
 		TargetVectorNorm.Normalize();
 
-		//get angle between player->Target and player forward vector
+		//gets the angle between player->Target and player forward vector
 		angle = (180.0) / UE_DOUBLE_PI * FMath::Acos(FVector::DotProduct(playerForwardVectNorm, TargetVectorNorm));
 
+		//helper function turns to false if player is on the target so they dont get stuck
 		if (angle <= 2) AimAssistHelper = false;
 		
 
-		if (angle >= aimAssistLimit) AimAssistHelper = true;
+		if (angle >= aimAssistLimit) AimAssistHelper = true; // helper function turns back to true if the dot product is higher than what target gravity activation angle is
 
 		if (aimAssistOn && AimAssistHelper)
 		{
-			//if angle is less than 15 degrees then move player forward vector to vector player->target.
-			//make sure this doesnt happen every frame only when is both less than 15 degrees and greater than 0 degrees
+			//finds the proper pitch, roll and yaw values nesaccery to rotate player camera
 			FRotator TargetGravityRotator = UKismetMathLibrary::FindLookAtRotation(FirstPersonCameraComponent->GetComponentLocation(), target->GetActorLocation());
 
-			/*	if accuracy 100 % then aim assst off
-				if accuracy is less than 100 and greater than 75 then angle = 3.75
-				if accuracy is less than 75 and greater than 50 then angle = 7.5
-				if accuracy is less than 50 and greater than 25 then angle = 11.25
-				is accuracy = 0 then angle = 15
-			*/
-
-			//change the limit at which aim assist occurs based on how accurate the player is.
-			//if (accuracy >= 95) aimAssistLimit = 2;
+		
+			//change the limit at which target gravity occurs based on how accurate the player is.
 			if (accuracy >= 75) aimAssistLimit = 5;
 			if (accuracy < 75 && accuracy >= 50) aimAssistLimit = 10;
 			if (accuracy < 50 && accuracy >= 25) aimAssistLimit = 15;
 			if (accuracy < 25 && accuracy >= 0) aimAssistLimit = 20;
 
-			////debug lines
-			//FString FloatMessage = FString::Printf(TEXT("current limit: %f"), aimAssistLimit);
-			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FloatMessage);
-
+			// if dot product angle is between the players 'target gravity' limit and player is not facing the target 
 			if (angle <= aimAssistLimit && angle > 1)
 			{
-				if (!FirstPersonCameraComponent->GetComponentRotation().Equals(TargetGravityRotator, 0.1f))
+				// checks that the player rotation is not the same as the rotation about to take place
+				if (!FirstPersonCameraComponent->GetComponentRotation().Equals(TargetGravityRotator, 0.1f)) 
 				{
+					//rotates camera towards target 
 					Controller->SetControlRotation(UKismetMathLibrary::RInterpTo(FirstPersonCameraComponent->GetComponentRotation(), TargetGravityRotator, DeltaTime, 10));
 				}
 			}
-
-			////debug lines
-			//FString FloatMessage = FString::Printf(TEXT("The value of MyFloat is: %f"), angle);
-			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FloatMessage);
-
-			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, AimAssistHelper ? TEXT("True") : TEXT("False"));
 		}
 	}
 }
@@ -144,7 +133,7 @@ void AAimAssistHonsCharacter::Look(const FInputActionValue& Value)
 void AAimAssistHonsCharacter::Shoot(const FInputActionValue& Value)
 {
 
-	//check if the game is counting down to start, therefore dont let player shooot.
+	//check if the game is counting down by checking is player input is locked from "LevelBlueprint", therefore dont let player shoot.
 	if (APlayerController* PC = Cast<APlayerController>(GetController()))
 	{
 		if (PC->IsLookInputIgnored()) return;
@@ -157,6 +146,7 @@ void AAimAssistHonsCharacter::Shoot(const FInputActionValue& Value)
 	//get player controller
 	APlayerController* PlayerController = Cast<APlayerController>(GetController());
 	
+	//gets the current rotation of the camera
 	const FRotator SpawnRotation = PlayerController->PlayerCameraManager->GetCameraRotation();
 	
 	FCollisionQueryParams TraceParams(FName(TEXT("TraceTag")), true, nullptr);//used to specify parameters for collision 
@@ -172,32 +162,33 @@ void AAimAssistHonsCharacter::Shoot(const FInputActionValue& Value)
 
 	if (angle > 10 || !aimAssistOn)
 	{
-		End = FirstPersonCameraComponent->GetComponentLocation() + UKismetMathLibrary::GetForwardVector(SpawnRotation) * 50000;
+		//cast line trace along players forward vector
+		End = FirstPersonCameraComponent->GetComponentLocation() + UKismetMathLibrary::GetForwardVector(SpawnRotation) * 50000; //50,000 some random large number to represent forward vector
 	}
 	else
 	{
-		End = (target->GetActorLocation() - FirstPersonCameraComponent->GetComponentLocation()) * 50000;
+		//cast line trace along vector from player to target 
+		End = (target->GetActorLocation() - FirstPersonCameraComponent->GetComponentLocation()) * 50000; //50,000 some random large number so player definitely hits the target
 	}
 
 	//traces a line from the player to the first point of collision 
 	hit = GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility, TraceParams);
 
-	if (hit)
+	if (hit) //if player has hit something
 	{
-		if (ATarget* hitTarget = Cast<ATarget>(HitResult.GetActor()))
+		if (ATarget* hitTarget = Cast<ATarget>(HitResult.GetActor())) //check if player has hit the target
 		{
 			targetShot++;
 			targetHit = true;
-			hitTarget->moveTarget(targetHit);
+			hitTarget->moveTarget(targetHit); //set target to new random location
 
-			AimAssistHelper = true;
+			AimAssistHelper = true; // as player has hit the target turn helper variable on
 
 			//play sound effect for hitting target
 			if (soundCue)
 			{
 				UGameplayStatics::PlaySound2D(this, soundCue);
 			}
-
 		}
 	}
 }

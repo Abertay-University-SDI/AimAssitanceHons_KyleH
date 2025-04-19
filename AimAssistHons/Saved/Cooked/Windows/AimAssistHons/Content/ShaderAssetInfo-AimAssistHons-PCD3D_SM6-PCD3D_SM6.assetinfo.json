@@ -26,6 +26,12 @@
 			]
 		},
 		{
+			"ShaderMapHash": "171606064EA4501A5D0F37D0F682F17E731AF1AD",
+			"Assets": [
+				"/AnimationSharing/AnimSharingBase"
+			]
+		},
+		{
 			"ShaderMapHash": "7F8DE406B5ADD677E8630CFC4088A7518BB12EF0",
 			"Assets": [
 				"/Game/StarterContent/Materials/M_Brick_Cut_Stone"
@@ -125,6 +131,12 @@
 			"ShaderMapHash": "DACFFF287D040982988628E26A3B173B214843B5",
 			"Assets": [
 				"/SpeedTreeImporter/SpeedTree9/SpeedTreeMaster"
+			]
+		},
+		{
+			"ShaderMapHash": "A0056629ADBCFEEDD029D06D4175E1668A351445",
+			"Assets": [
+				"/DatasmithContent/Materials/FBXImporter/VREDReferenceTransparent"
 			]
 		},
 		{
@@ -250,6 +262,7 @@
 		{
 			"ShaderMapHash": "59FF4F491CF2DE1B86AF978D474157EBFF8FB757",
 			"Assets": [
+				"/Engine/TemplateResources/M_Template_Master",
 				"/Game/FPWeapon/Materials/BaseMaterial"
 			]
 		},

@@ -76,6 +76,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	float accuracy = 0.0f;
 
+	//aim assist vars
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	float aimAssistLimit = 15.0f;
 

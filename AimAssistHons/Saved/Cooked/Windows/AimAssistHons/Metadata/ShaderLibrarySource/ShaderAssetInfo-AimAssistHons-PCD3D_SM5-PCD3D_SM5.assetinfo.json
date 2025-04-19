@@ -46,6 +46,7 @@
 		{
 			"ShaderMapHash": "4322100B63CBC0574CCF32609B111DF7B5CF300C",
 			"Assets": [
+				"/Engine/TemplateResources/M_Template_Master",
 				"/Game/FPWeapon/Materials/BaseMaterial"
 			]
 		},
@@ -320,6 +321,12 @@
 			"ShaderMapHash": "9EED9453C26C2BED839D3D0E32D9332C04562EA0",
 			"Assets": [
 				"/Interchange/gltf/MaterialInstances/MI_Unlit_Blend_DS"
+			]
+		},
+		{
+			"ShaderMapHash": "5B33215476664E885E7D25E3FE3E0F6F453FB6C5",
+			"Assets": [
+				"/DatasmithContent/Materials/FBXImporter/VREDReferenceTransparent"
 			]
 		},
 		{
@@ -821,6 +828,12 @@
 			"ShaderMapHash": "BF208DD6FDA1AE2FCFD88E033DFDB58555F55C7C",
 			"Assets": [
 				"/Game/StarterContent/Materials/M_Concrete_Panels"
+			]
+		},
+		{
+			"ShaderMapHash": "B5648ED7F0457BECDFFE1EE009A8884E7C3218CE",
+			"Assets": [
+				"/AnimationSharing/AnimSharingBase"
 			]
 		},
 		{

@@ -108,7 +108,13 @@ struct Z_Construct_UClass_AAimAssistHonsCharacter_Statics
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_aimAssistLimit_MetaData[] = {
 		{ "Category", "AimAssistHonsCharacter" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//aim assist vars\n" },
+#endif
 		{ "ModuleRelativePath", "AimAssistHonsCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "aim assist vars" },
+#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_aimAssistOn_MetaData[] = {
 		{ "Category", "AimAssistHonsCharacter" },
@@ -213,10 +219,10 @@ AAimAssistHonsCharacter::~AAimAssistHonsCharacter() {}
 struct Z_CompiledInDeferFile_FID_Users_hamil_OneDrive_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AAimAssistHonsCharacter, AAimAssistHonsCharacter::StaticClass, TEXT("AAimAssistHonsCharacter"), &Z_Registration_Info_UClass_AAimAssistHonsCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAimAssistHonsCharacter), 1742935043U) },
+		{ Z_Construct_UClass_AAimAssistHonsCharacter, AAimAssistHonsCharacter::StaticClass, TEXT("AAimAssistHonsCharacter"), &Z_Registration_Info_UClass_AAimAssistHonsCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAimAssistHonsCharacter), 2983910504U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_hamil_OneDrive_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_422804457(TEXT("/Script/AimAssistHons"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_hamil_OneDrive_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_2949788512(TEXT("/Script/AimAssistHons"),
 	Z_CompiledInDeferFile_FID_Users_hamil_OneDrive_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_hamil_OneDrive_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
