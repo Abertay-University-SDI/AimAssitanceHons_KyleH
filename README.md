@@ -10,7 +10,7 @@ BP_FirstPersonCharacter
 
 Widgets:
 AimAssistWidget,
-CountdownBeginWidget
+CountdownBeginWidget,
 timerWidget
 
 
