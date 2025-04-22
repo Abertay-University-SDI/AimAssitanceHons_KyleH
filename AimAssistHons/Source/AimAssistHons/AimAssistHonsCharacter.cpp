@@ -52,10 +52,10 @@ void AAimAssistHonsCharacter::Tick(float DeltaTime)
 	//gets accuracy value
 	accuracy = (targetShot / shotGun) * 100;
 
-	//ensures that the accuracy value sent is recognised number
+	//ensures that the accuracy value sent is a recognised number
 	if (isnan(accuracy)) accuracy = 0;
 
-	if (target) //checks that target has a value
+	if (target) //checks that target has a real value & not a nullptr
 	{
 		//gets player forward vector and normalises it
 		FVector playerForwardVectNorm = FirstPersonCameraComponent->GetForwardVector();
@@ -72,15 +72,15 @@ void AAimAssistHonsCharacter::Tick(float DeltaTime)
 		if (angle <= 2) AimAssistHelper = false;
 		
 
-		if (angle >= aimAssistLimit) AimAssistHelper = true; // helper function turns back to true if the dot product is higher than what target gravity activation angle is
+		if (angle >= aimAssistLimit) AimAssistHelper = true; // helper variable turns back to true if the dot product is higher than what target gravity activation angle is
 
-		if (aimAssistOn && AimAssistHelper)
+		if (aimAssistOn && AimAssistHelper) //section only happens when aim assist is activated and players aiming reticle is not on the target
 		{
 			//finds the proper pitch, roll and yaw values nesaccery to rotate player camera
 			FRotator TargetGravityRotator = UKismetMathLibrary::FindLookAtRotation(FirstPersonCameraComponent->GetComponentLocation(), target->GetActorLocation());
 
 		
-			//change the limit at which target gravity occurs based on how accurate the player is.
+			//Dynamic Aim Assist: change the limit at which target gravity occurs based on how accurate the player is.
 			if (accuracy >= 75) aimAssistLimit = 5;
 			if (accuracy < 75 && accuracy >= 50) aimAssistLimit = 10;
 			if (accuracy < 50 && accuracy >= 25) aimAssistLimit = 15;
@@ -92,7 +92,7 @@ void AAimAssistHonsCharacter::Tick(float DeltaTime)
 				// checks that the player rotation is not the same as the rotation about to take place
 				if (!FirstPersonCameraComponent->GetComponentRotation().Equals(TargetGravityRotator, 0.1f)) 
 				{
-					//rotates camera towards target 
+					//Target Gravity: rotates camera towards target 
 					Controller->SetControlRotation(UKismetMathLibrary::RInterpTo(FirstPersonCameraComponent->GetComponentRotation(), TargetGravityRotator, DeltaTime, 10));
 				}
 			}
@@ -133,14 +133,14 @@ void AAimAssistHonsCharacter::Look(const FInputActionValue& Value)
 void AAimAssistHonsCharacter::Shoot(const FInputActionValue& Value)
 {
 
-	//check if the game is counting down by checking is player input is locked from "LevelBlueprint", therefore dont let player shoot.
+	//check if player input is locked from "LevelBlueprint", therefore dont let player shoot.
 	if (APlayerController* PC = Cast<APlayerController>(GetController()))
 	{
 		if (PC->IsLookInputIgnored()) return;
 	}
 
 
-	//increment the number of times the player has shot the weapon to calculate the accuracy rating
+	//increment the number of times the player has shot to calculate the accuracy rating
 	shotGun++;
 	
 	//get player controller
@@ -154,21 +154,21 @@ void AAimAssistHonsCharacter::Shoot(const FInputActionValue& Value)
 	
 	bool hit;
 	
-	//bullet magnetism. If players forward vector is within 10 degrees of the target the let them shoot it.
+	//Bullet magnetism: If players forward vector is within 10 degrees of the target then let them shoot it.
 
 	//start and end of the line trace
 	FVector Start = FirstPersonCameraComponent->GetComponentLocation();
 	FVector End;
 
-	if (angle > 10 || !aimAssistOn)
+	if (angle > 10 || !aimAssistOn) //angle is not within 10 degrees of target or aim assist is off
 	{
 		//cast line trace along players forward vector
-		End = FirstPersonCameraComponent->GetComponentLocation() + UKismetMathLibrary::GetForwardVector(SpawnRotation) * 50000; //50,000 some random large number to represent forward vector
+		End = FirstPersonCameraComponent->GetComponentLocation() + UKismetMathLibrary::GetForwardVector(SpawnRotation) * 50000; //50,000 is some random large number to represent forward vector
 	}
-	else
+	else //if aim assist is on and player is within 10 degrees of the target
 	{
 		//cast line trace along vector from player to target 
-		End = (target->GetActorLocation() - FirstPersonCameraComponent->GetComponentLocation()) * 50000; //50,000 some random large number so player definitely hits the target
+		End = (target->GetActorLocation() - FirstPersonCameraComponent->GetComponentLocation()) * 50000; //50,000 is some random large number so player definitely hits the target
 	}
 
 	//traces a line from the player to the first point of collision 
@@ -178,7 +178,8 @@ void AAimAssistHonsCharacter::Shoot(const FInputActionValue& Value)
 	{
 		if (ATarget* hitTarget = Cast<ATarget>(HitResult.GetActor())) //check if player has hit the target
 		{
-			targetShot++;
+			//increments the number of times the player has hit the target & changes location of the target
+			targetShot++; 
 			targetHit = true;
 			hitTarget->moveTarget(targetHit); //set target to new random location
 

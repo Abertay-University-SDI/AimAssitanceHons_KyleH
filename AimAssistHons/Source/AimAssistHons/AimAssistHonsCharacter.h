@@ -34,12 +34,11 @@ class AAimAssistHonsCharacter : public ACharacter
 
 	
 
-	bool targetHit = false;
-	bool isRotating = true;
+	bool targetHit = false; //checks wheather the target has been hit
 
-	bool AimAssistHelper = false;
+	bool AimAssistHelper = false; //helper variable to stop player from getting stuck on the target when Aim Assist is on
 
-	float angle = 0.0f;
+	float angle = 0.0f; //variable used to store the angle between player forward vector and player->target
 	
 
 
@@ -68,24 +67,24 @@ public:
 
 	//accuracy vars
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	float targetShot = 0.0f;
+	float targetShot = 0.0f; //number of targets player has hit
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	float shotGun = 0.0f;
+	float shotGun = 0.0f; //number of times the player has pressed the shoot button
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	float accuracy = 0.0f;
+	float accuracy = 0.0f; //the players accuracy rating
 
 	//aim assist vars
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	float aimAssistLimit = 15.0f;
+	float aimAssistLimit = 15.0f; //angle limit at which target gravity activates
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	bool aimAssistOn = false;
+	bool aimAssistOn = false; //toggle aim assist
 
 	//sound effect
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USoundBase* soundCue;
+	USoundBase* soundCue; //used to play sound when player hits target
 
 protected:
 	/** Called for looking input */

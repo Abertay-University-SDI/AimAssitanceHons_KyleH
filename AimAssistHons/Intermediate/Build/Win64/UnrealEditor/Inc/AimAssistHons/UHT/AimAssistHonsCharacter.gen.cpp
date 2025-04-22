@@ -100,11 +100,23 @@ struct Z_Construct_UClass_AAimAssistHonsCharacter_Statics
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_shotGun_MetaData[] = {
 		{ "Category", "AimAssistHonsCharacter" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//number of targets player has hit\n" },
+#endif
 		{ "ModuleRelativePath", "AimAssistHonsCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "number of targets player has hit" },
+#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_accuracy_MetaData[] = {
 		{ "Category", "AimAssistHonsCharacter" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//number of times the player has pressed the shoot button\n" },
+#endif
 		{ "ModuleRelativePath", "AimAssistHonsCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "number of times the player has pressed the shoot button" },
+#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_aimAssistLimit_MetaData[] = {
 		{ "Category", "AimAssistHonsCharacter" },
@@ -118,7 +130,13 @@ struct Z_Construct_UClass_AAimAssistHonsCharacter_Statics
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_aimAssistOn_MetaData[] = {
 		{ "Category", "AimAssistHonsCharacter" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//angle limit at which target gravity activates\n" },
+#endif
 		{ "ModuleRelativePath", "AimAssistHonsCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "angle limit at which target gravity activates" },
+#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_soundCue_MetaData[] = {
 		{ "Category", "AimAssistHonsCharacter" },
@@ -219,10 +237,10 @@ AAimAssistHonsCharacter::~AAimAssistHonsCharacter() {}
 struct Z_CompiledInDeferFile_FID_Users_hamil_OneDrive_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AAimAssistHonsCharacter, AAimAssistHonsCharacter::StaticClass, TEXT("AAimAssistHonsCharacter"), &Z_Registration_Info_UClass_AAimAssistHonsCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAimAssistHonsCharacter), 2983910504U) },
+		{ Z_Construct_UClass_AAimAssistHonsCharacter, AAimAssistHonsCharacter::StaticClass, TEXT("AAimAssistHonsCharacter"), &Z_Registration_Info_UClass_AAimAssistHonsCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAimAssistHonsCharacter), 4109444081U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_hamil_OneDrive_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_2949788512(TEXT("/Script/AimAssistHons"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_hamil_OneDrive_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_3751915100(TEXT("/Script/AimAssistHons"),
 	Z_CompiledInDeferFile_FID_Users_hamil_OneDrive_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_hamil_OneDrive_Documents_GitHub_AimAssitanceHons_KyleH_AimAssistHons_Source_AimAssistHons_AimAssistHonsCharacter_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
